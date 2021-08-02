@@ -1,0 +1,31 @@
+/* CSS Document */
+
+body {
+  background-color: #484848;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+input {
+  outline: none;
+  border: none;
+  border-width: 0px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.playerContainer {
+  padding: 8px 2px;
+}
+
+.playerContainer input {
+  margin: 0 4px;
+  padding: 4px;
+  font-size: 1rem;
+}
+
+.playerContainer input[type='number'] {
+  width: 50px;
+}
