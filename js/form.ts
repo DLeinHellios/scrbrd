@@ -1,5 +1,9 @@
+const maxPlayers = 8;
+var nPlayers = 8;
 
-function addPlayer() {
+// TODO: Generate player forms for maxPlayers, hide down to nPlayers
+
+function createPlayer() {
 	var container = document.createElement('div');
 	container.className = "player-container"
 
@@ -22,7 +26,26 @@ function addPlayer() {
     document.getElementById("setForm").appendChild(container);
 }
 
-for(let i=0; i<8; i++) {
-	addPlayer();
+
+function addPlayer() {
+	console.log(nPlayers);
+	if (nPlayers < maxPlayers) {
+		let player = "p" + (nPlayers + 1);
+		document.getElementById(player).style.display = 'block';
+		nPlayers++;
+
+	// TODO - Disable button when players = maxPlayers - re-enable remove button on successful addition
+	}
+}
+
+
+function removePlayer() {
+	if (nPlayers > 2) {
+		let player = "p" + nPlayers;
+		document.getElementById(player).style.display = 'none';
+		nPlayers--;
+
+	// TODO - Disable button when players = 2 - re-enable add button on successful removal
+	}
 
 }
