@@ -4,6 +4,8 @@ body {
   background-color: #484848;
   font-family: "Roboto", sans-serif;
   color: white;
+  margin: 0;
+  padding: 0;
 }
 
 input {
@@ -16,16 +18,41 @@ input:focus {
   outline: none;
 }
 
-.playerContainer {
+.header {
+  outline: solid;
+  outline-color: white;
+  margin: 10px;
+}
+
+.header h1{
+  margin: 0;
+  padding: 0 20px 0 10px;
+  display: inline;
+  font-size: 1.8rem;
+}
+
+.header button {
+  font-size: 1rem;
+  padding: 0 12px;
+  height: 100%;
+  color: white;
+  background-color: #484848;
+}
+
+.set-container {
+  padding: 0 20px;
+}
+
+.player-container {
   padding: 8px 2px;
 }
 
-.playerContainer input {
+.player-container input {
   margin: 0 4px;
   padding: 4px;
   font-size: 1rem;
 }
 
-.playerContainer input[type='number'] {
+.player-container input[type='number'] {
   width: 50px;
 }

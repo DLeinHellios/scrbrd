@@ -1,7 +1,7 @@
 
 function addPlayer() {
 	var container = document.createElement('div');
-	container.className = "playerContainer"
+	container.className = "player-container"
 
 	var l = document.createElement('label');
 	l.innerHTML = "Player #: ";
@@ -13,6 +13,7 @@ function addPlayer() {
 	s.setAttribute("type", "number");
 	s.setAttribute("min", "0");
 	s.setAttribute("size", "3");
+	s.setAttribute("value", "0");
 
 	container.appendChild(l);
 	container.appendChild(n);
@@ -21,5 +22,7 @@ function addPlayer() {
     document.getElementById("setForm").appendChild(container);
 }
 
+for(let i=0; i<8; i++) {
+	addPlayer();
 
-addPlayer();
+}
