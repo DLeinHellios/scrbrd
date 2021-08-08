@@ -42,6 +42,14 @@ input:focus {
 
 .set-container {
   padding: 0 20px;
+  max-width:700px;
+}
+
+.game-container input {
+  margin: 4px 0;
+  padding: 4px 0;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .player-container {
@@ -52,6 +60,7 @@ input:focus {
   margin: 4px;
   padding: 4px;
   font-size: 1rem;
+  width: 35%;
 }
 
 .player-container input[type='number'] {

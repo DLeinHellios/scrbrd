@@ -34,6 +34,7 @@ function createPlayer(num: number) {
 	container.appendChild(score);
 
     document.getElementById("set-form").appendChild(container);
+	nPlayers++;
 }
 
 
@@ -79,5 +80,5 @@ function setupPlayers() {
 
 
 // ------- Setup -------
-var nPlayers = maxPlayers;
+var nPlayers = 0;
 setupPlayers();
