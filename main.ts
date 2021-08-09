@@ -1,8 +1,11 @@
-const maxPlayers = 8; // Max possible player slots per set
-const initPlayers = 2; // Initial open player spots
+const MAXPLAYERS = 8;
+const INITPLAYERS = 2;
+const MAXSETS = 100;
 
 
 function createPlayer(num: number) {
+	// Creates input fields for a single player and adds them to set-form element
+
 	let container = document.createElement('div');
 	container.id = "p" + num;
 	container.className = "player-container";
@@ -39,13 +42,15 @@ function createPlayer(num: number) {
 
 
 function addPlayer() {
-	if (nPlayers < maxPlayers) {
+	// Reveals a single hidden player input
+
+	if (nPlayers < MAXPLAYERS) {
 		let player = "p" + (nPlayers + 1);
 		document.getElementById(player).style.display = 'block';
 		document.getElementById('remove-button').removeAttribute('disabled');
 		nPlayers++;
 
-		if (nPlayers == maxPlayers) {
+		if (nPlayers == MAXPLAYERS) {
 			document.getElementById('add-button').setAttribute('disabled', 'true');
 		}
 	}
@@ -53,6 +58,8 @@ function addPlayer() {
 
 
 function removePlayer() {
+	// Hides a single player input
+
 	if (nPlayers > 2) {
 		let player = "p" + nPlayers;
 		document.getElementById(player).style.display = 'none';
@@ -67,12 +74,14 @@ function removePlayer() {
 
 
 function setupPlayers() {
-	for (let i=1; i < maxPlayers + 1; i++) {
+	// Creates all player inputs, hides down to initial number of players
+
+	for (let i=1; i < MAXPLAYERS + 1; i++) {
 		// Create all player inputs
 		createPlayer(i);
 	}
 
-	while (nPlayers > initPlayers) {
+	while (nPlayers > INITPLAYERS) {
 		// Hide down to initial players
 		removePlayer();
 	}
@@ -80,6 +89,7 @@ function setupPlayers() {
 
 
 function updateResults() {
+	// Updates results column - MOVE THIS
 	if (storedSets.length == 0) {
 		let message = document.createElement('p');
 		message.innerHTML = "NO SET DATA FOUND";
@@ -90,8 +100,18 @@ function updateResults() {
 }
 
 
-// ------- Setup -------
-var nPlayers = 0;
-var storedSets = [];
+function clearFields() {
+	// Clears all fields - MOVE
+	if (window.confirm("Clear all fields? Stored data will not be removed.")) {
+		console.log("yes");
+	}
+}
+
+
+// ===== Setup ===
+let nPlayers = 0;
+let storedSets = [];
+
+
 setupPlayers();
 updateResults();
