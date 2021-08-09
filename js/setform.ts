@@ -3,25 +3,25 @@ const initPlayers = 2; // Initial open player spots
 
 
 function createPlayer(num: number) {
-	var container = document.createElement('div');
+	let container = document.createElement('div');
 	container.id = "p" + num;
 	container.className = "player-container";
 
-	var label = document.createElement('label');
+	let label = document.createElement('label');
 	label.id = "p" + num + "-label";
 	label.innerHTML = "Player " + num + ": ";
 
-	var name = document.createElement('INPUT');
+	let name = document.createElement('INPUT');
 	name.id = "p" + num + "-name";
 	name.setAttribute("placeholder", "Player Name");
 	name.setAttribute("size", "12");
 
-	var note = document.createElement('INPUT');
+	let note = document.createElement('INPUT');
 	note.id = "p" + num + "-note";
 	note.setAttribute("placeholder", "Notes");
 	note.setAttribute("size", "24");
 
-    var score = document.createElement('INPUT');
+    let score = document.createElement('INPUT');
 	score.id = "p" + num + "-score";
 	score.setAttribute("type", "number");
 	score.setAttribute("min", "0");
@@ -79,6 +79,19 @@ function setupPlayers() {
 }
 
 
+function updateResults() {
+	if (storedSets.length == 0) {
+		let message = document.createElement('p');
+		message.innerHTML = "NO SET DATA FOUND";
+		document.getElementById('results').appendChild(message);
+	} else {
+		console.log(storedSets);
+	}
+}
+
+
 // ------- Setup -------
 var nPlayers = 0;
+var storedSets = [];
 setupPlayers();
+updateResults();
