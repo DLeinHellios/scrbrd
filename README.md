@@ -1,0 +1,2 @@
+## SetCount-Proto
+Browser-based scoreboard built in TypeScript. Quickly jot, compare, and save match/set records. This is the prototype version without any server-side functionality. Still a work-in-progress.
