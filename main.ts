@@ -120,7 +120,7 @@ function clearFields() {
 function clearResultsVars() {
 	// Clears all vars used to store results data
 	storedSets = [];
-	playerData = [];
+	playerData.clear();
 }
 
 
@@ -143,7 +143,6 @@ function populateResults(results: HTMLElement) {
 		message.innerHTML = "NO SET DATA FOUND";
 		results.appendChild(message);
 	} else {
-		console.log("There is data!");
 		// Put real results stuff here
 	}
 }
@@ -158,31 +157,85 @@ function updateResults() {
 
 
 function storeSet() {
-	// Builds and stores 1 set object in storedSets
+	// Builds and stores 1 set Map in storedSets array
 
-	var setData : { [n: string]: string | string[]} = {};
-	setData.gameName = (<HTMLInputElement>document.getElementById("game-name")).value;
-	setData.setNote = (<HTMLInputElement>document.getElementById("set-notes")).value;
+	let setData = new Map();
+	setData.set("gameName", (<HTMLInputElement>document.getElementById("game-name")).value);
+	setData.set("setNote", (<HTMLInputElement>document.getElementById("set-notes")).value);
 
 	// Build player array
-	//setData.p1Name =  (<HTMLInputElement>document.getElementById("p1-name")).value;
-	setData.playerNames = [];
-	setData.playerNotes = [];
-	setData.playerScores = [];
+	setData.set("playerName", []);
+	setData.set("playerNote", []);
+	setData.set("playerScore", []);
 
 	for (let i=1; i<nPlayers+1; i++){
-		setData.playerNames.push((<HTMLInputElement>document.getElementById("p" + i + "-name")).value);
-		setData.playerNotes.push((<HTMLInputElement>document.getElementById("p" + i + "-note")).value);
-		setData.playerScores.push((<HTMLInputElement>document.getElementById("p" + i + "-score")).value);
+		setData.get("playerName").push((<HTMLInputElement>document.getElementById("p" + i + "-name")).value);
+		setData.get("playerNote").push((<HTMLInputElement>document.getElementById("p" + i + "-note")).value);
+		setData.get("playerScore").push((<HTMLInputElement>document.getElementById("p" + i + "-score")).value);
 	}
 
 	storedSets.push(setData);
 }
+
+
+function findWinners() {
+	// Returns an array of players with the highest points (names are strings)
+	let winners = [];
+	let hiscore = 0;
+
+	for (let i=1; i<nPlayers+1; i++) {
+		let name = (<HTMLInputElement>document.getElementById("p" + i + "-name")).value
+		let score = +(<HTMLInputElement>document.getElementById("p" + i + "-score")).value
+
+		if (score > hiscore) {
+			winners = [name];
+			hiscore = score;
+		} else if (score == hiscore) {
+			winners.push(name)
+		}
+	}
+	return winners;
+}
+
+
+function storeWinner() {
+	// Stores a winner in playerData - add player to playerData first!
+	let winners = findWinners();
+
+	for (let i=0; i<winners.length; i++) {
+		playerData.get(winners[i])[0] += 1;
+	}
+}
+
+
+function storePlayers() {
+	// Maintains the playerData object
+	for (let p=1; p<nPlayers+1; p++) {
+		let name = (<HTMLInputElement>document.getElementById("p" + p + "-name")).value;
+		let score : number = +(<HTMLInputElement>document.getElementById("p" + p + "-score")).value;
+		if (playerData.has(name)) {
+			playerData.get(name)[1] += score;
+
+		} else {
+			// Create the entry
+			playerData.set(name, [0, score]);
+		}
+	}
+
+}
+
+
 function storeResults() {
 	// Stores current set + players, then clears the forms
 	storeSet();
+	storePlayers();
+	storeWinner();
 	clearFields();
 	updateResults();
+	//console.log(playerData);
+	//console.log(storedSets);
+
+	// TODO - Enforce max sets
 }
 
 
@@ -191,6 +244,11 @@ function storeButton() {
 	//Function for the "store" button
 	if (window.confirm("Add current set to storage?")) {
 		// TODO - front-end validation!!
+		//	- Names can't be blank
+		//	- Names can't be duplicated in a single set
+		//	- Names will be case sensitiv
+		//	- Scores must be positive
+		//	- Lock game name field(?) + can't be blank
 		storeResults();
 	}
 }
@@ -216,9 +274,9 @@ function clearAllButton() {
 
 
 // ======= Setup =======
-let nPlayers = 0;
-let storedSets = [];
-let playerData = [];
+let nPlayers = 0; // Always-accurate number of players
+let storedSets = []; // Array of maps, each map = 1 set
+let playerData = new Map(); // Map of players, each value is [Sets Won, Points Earned]
 
 setupPlayers();
 updateResults();
