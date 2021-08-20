@@ -194,33 +194,53 @@ function findWinners() {
 			winners.push(name)
 		}
 	}
+
 	return winners;
 }
 
 
-function storeWinner() {
+function addPlayerWin() {
 	// Stores a winner in playerData - add player to playerData first!
 	let winners = findWinners();
 
+	// Add wins
 	for (let i=0; i<winners.length; i++) {
 		playerData.get(winners[i])[0] += 1;
 	}
 }
 
 
+function getTotalScore() {
+	// Returns the total score from the board
+	let totalScore : number = 0;
+	for (let p=1; p<nPlayers+1; p++) {
+		totalScore += +(<HTMLInputElement>document.getElementById("p" + p + "-score")).value;
+	}
+
+	return totalScore;
+}
+
+
 function storePlayers() {
-	// Maintains the playerData object
+	// Maintains the playerData map - keys are player names, values are [setWins, setTotal, scoreEarned, scorePossible]
 	for (let p=1; p<nPlayers+1; p++) {
 		let name = (<HTMLInputElement>document.getElementById("p" + p + "-name")).value;
 		let score : number = +(<HTMLInputElement>document.getElementById("p" + p + "-score")).value;
+		let totalScore : number = getTotalScore();
 		if (playerData.has(name)) {
-			playerData.get(name)[1] += score;
+			playerData.get(name)[1] += 1; // Add played set
+			playerData.get(name)[2] += score; // Add earned score
+			playerData.get(name)[3] += totalScore; // Add possible points
 
 		} else {
 			// Create the entry
-			playerData.set(name, [0, score]);
+			// setWins = 0, totalSets = 1, scoreTotal = score, scorePossible = total score
+			playerData.set(name, [0, 1,  score, totalScore]);
 		}
 	}
+
+	// Call other update functions
+	addPlayerWin();
 
 }
 
@@ -229,7 +249,6 @@ function storeResults() {
 	// Stores current set + players, then clears the forms
 	storeSet();
 	storePlayers();
-	storeWinner();
 	clearFields();
 	updateResults();
 	//console.log(playerData);
