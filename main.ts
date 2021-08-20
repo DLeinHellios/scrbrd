@@ -1,6 +1,6 @@
-const MAXPLAYERS = 8; // Maximum number of player inputs per set
-const INITPLAYERS = 2; // Initial number of player inputs
-const MAXSETS = 100; // Maximum number of stored sets
+const MAXPLAYERS : number = 8; // Maximum number of player inputs per set
+const INITPLAYERS : number = 2; // Initial number of player inputs
+const MAXSETS : number = 100; // Maximum number of stored sets
 
 // ----- Set form -----
 function createPlayer(num: number) {
@@ -111,8 +111,6 @@ function clearFields() {
 		(<HTMLInputElement>document.getElementById("p" + i + "-note")).value = "";
 		(<HTMLInputElement>document.getElementById("p" + i + "-score")).value = "0";
 	}
-
-
 }
 
 
@@ -180,8 +178,8 @@ function storeSet() {
 
 function findWinners() {
 	// Returns an array of players with the highest points (names are strings)
-	let winners = [];
-	let hiscore = 0;
+	let winners= [];
+	let hiscore : number = 0;
 
 	for (let i=1; i<nPlayers+1; i++) {
 		let name = (<HTMLInputElement>document.getElementById("p" + i + "-name")).value
@@ -293,7 +291,7 @@ function clearAllButton() {
 
 
 // ======= Setup =======
-let nPlayers = 0; // Always-accurate number of players
+let nPlayers : number = 0; // Always-accurate number of players
 let storedSets = []; // Array of maps, each map = 1 set
 let playerData = new Map(); // Map of players, each value is [Sets Won, Points Earned]
 
