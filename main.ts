@@ -219,6 +219,24 @@ function getTotalScore() {
 }
 
 
+function playerCompare(player1, player2) {
+	// Compare function sorting playerData map
+	// inputs are playerData arrays of names + scores - [name, [setWins, setTotal, scoreEarned, scorePossible]]
+	let p1 = player1[1];
+	let p2 = player2[1];
+	let setDifference = (p2[0] / p2[1]) - (p1[0] / p1[1]);
+
+	if (!setDifference) {
+		// Return difference based on points earned / points possible
+		return (p2[2] / p2[3]) - (p1[2] / p1[3]);
+	} else {
+		// Return difference based on sets won / sets played
+		return setDifference;
+	}
+
+}
+
+
 function storePlayers() {
 	// Maintains the playerData map - keys are player names, values are [setWins, setTotal, scoreEarned, scorePossible]
 	for (let p=1; p<nPlayers+1; p++) {
@@ -240,6 +258,8 @@ function storePlayers() {
 	// Call other update functions
 	addPlayerWin();
 
+	// Sort playerData
+	playerData = new Map([...playerData.entries()].sort(playerCompare));
 }
 
 
@@ -266,6 +286,7 @@ function storeButton() {
 		//	- Names will be case sensitiv
 		//	- Scores must be positive
 		//	- Lock game name field(?) + can't be blank
+		//	- Lock add/remove player buttons
 		storeResults();
 	}
 }
