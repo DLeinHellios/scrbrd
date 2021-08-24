@@ -130,11 +130,47 @@ function clearResultsColumn(results: HTMLElement) {
 }
 
 
+function populateLeaderboard() {
+	// Returns an HTML element for leaderboard text
+	let leaderboard = document.createElement('div');
+	leaderboard.className = "leaderboard";
+
+	let title = document.createElement('h3');
+	title.innerHTML = "Leaderboard";
+	leaderboard.appendChild(title);
+
+	let placeTable = document.createElement('table');
+
+
+	let place = 1;
+	for (const [name, score] of playerData) {
+		let playerRow = document.createElement('tr');
+		let playerPlace = document.createElement('td');
+		let playerName = document.createElement('td');
+		let playerScore = document.createElement('td');
+
+		playerName.innerHTML = name;
+		playerScore.innerHTML = `${score[0]}-${score[1] - score[0]}  (${score[2]}-${score[3] - score[2]})`;
+		playerPlace.innerHTML = place.toString() + '.';
+		place++;
+
+		playerRow.appendChild(playerPlace);
+		playerRow.appendChild(playerName);
+		playerRow.appendChild(playerScore);
+
+		placeTable.appendChild(playerRow);
+	}
+
+	leaderboard.appendChild(placeTable);
+
+	return leaderboard;
+
+}
+
+
 function populateResults(results: HTMLElement) {
 	// Fills results column with stats
 	let title = document.createElement('h2');
-	title.innerHTML = "Results";
-	results.appendChild(title);
 
 	if (storedSets.length == 0) {
 		let message = document.createElement('p');
@@ -142,6 +178,7 @@ function populateResults(results: HTMLElement) {
 		results.appendChild(message);
 	} else {
 		// Put real results stuff here
+		results.appendChild(populateLeaderboard());
 	}
 }
 
@@ -271,8 +308,6 @@ function storeResults() {
 	updateResults();
 	//console.log(playerData);
 	//console.log(storedSets);
-
-	// TODO - Enforce max sets
 }
 
 
@@ -288,6 +323,7 @@ function storeButton() {
 		//	- Lock game name field(?) + can't be blank
 		//	- Lock add/remove player buttons
 		storeResults();
+		// TODO - Enforce max sets
 	}
 }
 
