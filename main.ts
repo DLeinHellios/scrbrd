@@ -170,7 +170,7 @@ function populateLeaderboard() {
 
 function populateResults(results: HTMLElement) {
 	// Fills results column with stats
-	if (storedSets.length == 0) {
+	if (storedSets.length == 0 && playerData.size == 0) {
 		let message = document.createElement('p');
 		message.innerText = "NO DATA FOUND";
 		results.appendChild(message);
@@ -312,16 +312,19 @@ function storeResults() {
 // ----- Navbar -----
 function storeButton() {
 	//Function for the "store" button
-	if (window.confirm("Add current set to storage?")) {
-		// TODO - front-end validation!!
-		//	- Names can't be blank
-		//	- Names can't be duplicated in a single set
-		//	- Names will be case sensitiv
-		//	- Scores must be positive
-		//	- Lock game name field(?) + can't be blank
-		//	- Lock add/remove player buttons
-		storeResults();
-		// TODO - Enforce max sets
+	if (storedSets.length < MAXSETS) {
+		if (window.confirm("Add current set to storage?")) {
+			// TODO - front-end validation!!
+			//	- Names can't be blank
+			//	- Names can't be duplicated in a single set
+			//	- Names will be case sensitiv
+			//	- Scores must be positive
+			//	- Lock game name field(?) + can't be blank
+			//	- Lock add/remove player buttons
+			storeResults();
+		}
+	} else {
+		window.alert("Maximum number of sets reached! Please export your data and clear to continue");
 	}
 }
 
