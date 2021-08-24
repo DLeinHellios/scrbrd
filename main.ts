@@ -12,7 +12,7 @@ function createPlayer(num: number) {
 
 	let label = document.createElement('label');
 	label.id = "p" + num + "-label";
-	label.innerHTML = "Player " + num + ": ";
+	label.innerText = "Player " + num + ": ";
 
 	let name = (<HTMLInputElement>document.createElement('INPUT'));
 	name.id = "p" + num + "-name";
@@ -136,7 +136,7 @@ function populateLeaderboard() {
 	leaderboard.className = "leaderboard";
 
 	let title = document.createElement('h3');
-	title.innerHTML = "Leaderboard";
+	title.innerText = "Leaderboard";
 	leaderboard.appendChild(title);
 
 	let placeTable = document.createElement('table');
@@ -149,9 +149,9 @@ function populateLeaderboard() {
 		let playerName = document.createElement('td');
 		let playerScore = document.createElement('td');
 
-		playerName.innerHTML = name;
-		playerScore.innerHTML = `${score[0]}-${score[1] - score[0]}  (${score[2]}-${score[3] - score[2]})`;
-		playerPlace.innerHTML = place.toString() + '.';
+		playerName.innerText = name;
+		playerScore.innerText = `${score[0]}-${score[1] - score[0]}  (${score[2]}-${score[3] - score[2]})`;
+		playerPlace.innerText = place.toString() + '.';
 		place++;
 
 		playerRow.appendChild(playerPlace);
@@ -170,11 +170,9 @@ function populateLeaderboard() {
 
 function populateResults(results: HTMLElement) {
 	// Fills results column with stats
-	let title = document.createElement('h2');
-
 	if (storedSets.length == 0) {
 		let message = document.createElement('p');
-		message.innerHTML = "NO SET DATA FOUND";
+		message.innerText = "NO DATA FOUND";
 		results.appendChild(message);
 	} else {
 		// Put real results stuff here
