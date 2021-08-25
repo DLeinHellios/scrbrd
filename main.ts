@@ -94,7 +94,7 @@ function setupPlayers() {
 }
 
 
-function clearFields() {
+function clearFields(clearNames : boolean) {
 	// Clears all fields
 
 	// Clear game name if no stored sets
@@ -107,7 +107,10 @@ function clearFields() {
 
 	// Clear all player fields (even hidden ones)
 	for (let i=1; i < MAXPLAYERS+1; i++) {
-		(<HTMLInputElement>document.getElementById("p" + i + "-name")).value = "";
+		if (clearNames) {
+			(<HTMLInputElement>document.getElementById("p" + i + "-name")).value = "";
+		}
+
 		(<HTMLInputElement>document.getElementById("p" + i + "-note")).value = "";
 		(<HTMLInputElement>document.getElementById("p" + i + "-score")).value = "0";
 	}
@@ -302,7 +305,7 @@ function storeResults() {
 	// Stores current set + players, then clears the forms
 	storeSet();
 	storePlayers();
-	clearFields();
+	clearFields(false);
 	updateResults();
 	//console.log(playerData);
 	//console.log(storedSets);
@@ -332,7 +335,7 @@ function storeButton() {
 function clearButton() {
 	// Function for "clear" button
 	if (window.confirm("Clear all fields? Stored data will not be removed.")) {
-		clearFields();
+		clearFields(true);
 	}
 }
 
@@ -341,7 +344,7 @@ function clearAllButton() {
 	// Function for "clear all" button
 	if (window.confirm("Clear all fields AND stored data? WARNING - this cannot be undone!")) {
 		clearResultsVars();
-		clearFields();
+		clearFields(true);
 		updateResults();
 	}
 }
