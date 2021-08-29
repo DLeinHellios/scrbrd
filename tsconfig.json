@@ -3,6 +3,6 @@
     "removeComments": true,
     "downlevelIteration": true,
     "module": "commonjs",
-    "lib": ["dom", "es6"]
+    "lib": ["dom", "ESNext"]
   }
 }

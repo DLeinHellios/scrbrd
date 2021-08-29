@@ -1,6 +1,7 @@
 const MAXPLAYERS : number = 8; // Maximum number of player inputs per set
 const INITPLAYERS : number = 2; // Initial number of player inputs
 const MAXSETS : number = 100; // Maximum number of stored sets
+const VALIDATE_OUTLINE : string = "2px solid #F10A0A"; // Style to apply to invalid form fields
 
 // ----- Set form -----
 function createPlayer(num: number) {
@@ -97,6 +98,8 @@ function setupPlayers() {
 function clearFields(clearNames : boolean) {
 	// Clears all fields
 
+	resetFields(); // Reset validation
+
 	// Clear game name if no stored sets
 	if (storedSets.length == 0) {
 		(<HTMLInputElement>document.getElementById("game-name")).value = "";
@@ -114,6 +117,44 @@ function clearFields(clearNames : boolean) {
 		(<HTMLInputElement>document.getElementById("p" + i + "-note")).value = "";
 		(<HTMLInputElement>document.getElementById("p" + i + "-score")).value = "0";
 	}
+}
+
+
+// Form Validation
+
+function resetFields() {
+	// Resets all verified fields back to original state
+	document.getElementById("game-name").style.outline = 'none';
+	for (let i=1; i < nPlayers+1; i++) {
+		document.getElementById("p" + i + "-name").style.outline = 'none';
+	}
+}
+
+function validateSet() {
+	// Sets fields red, returns bool for valid/invalid
+	let valid = true;
+	let names : string[] = [];
+	resetFields(); // Reset before validation
+
+
+	// Game name cannot be blank
+	if ((<HTMLInputElement>document.getElementById("game-name")).value == "") {
+		document.getElementById("game-name").style.outline = VALIDATE_OUTLINE;
+		valid = false;
+	}
+
+	// Active player names cannot be blank, must be unique
+	for (let i=1; i < nPlayers+1; i++) {
+		let name = (<HTMLInputElement>document.getElementById("p" + i + "-name")).value;
+		if (name == '' || names.includes(name)) {
+			document.getElementById("p" + i + "-name").style.outline = VALIDATE_OUTLINE;
+			valid = false;
+		} else {
+			names.push(name);
+		}
+	}
+
+	return valid;
 }
 
 
@@ -303,12 +344,14 @@ function storePlayers() {
 
 function storeResults() {
 	// Stores current set + players, then clears the forms
-	storeSet();
-	storePlayers();
-	clearFields(false);
-	updateResults();
-	//console.log(playerData);
-	//console.log(storedSets);
+	if (validateSet()) {
+		storeSet();
+		storePlayers();
+		clearFields(false);
+		updateResults();
+		//console.log(playerData);
+		//console.log(storedSets);
+	}
 }
 
 
