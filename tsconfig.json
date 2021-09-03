@@ -1,8 +1,11 @@
 {
-  "compilerOptions": {
-    "removeComments": true,
-    "downlevelIteration": true,
-    "module": "commonjs",
-    "lib": ["dom", "ESNext"]
-  }
+    "compilerOptions": {
+        "removeComments": true,
+        "downlevelIteration": true,
+        "module": "ES6",
+        "outDir": "js/",
+        "lib": ["dom", "es2016"],
+    },
+
+    "include": ["src/*"]
 }
