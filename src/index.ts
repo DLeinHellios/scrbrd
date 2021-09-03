@@ -4,6 +4,7 @@
 const MAXPLAYERS : number = 8; // Maximum number of player inputs per set
 const INITPLAYERS : number = 2; // Initial number of player inputs - Must be < max players!
 const MAXSETS : number = 100; // Maximum number of stored sets
+const MAX_NAME_LENGTH : number = 30; // Max number of characters in a player name field
 const VALIDATE_OUTLINE : string = "2px solid #F10A0A"; // Style to apply to invalid form fields outline
 
 
@@ -178,6 +179,9 @@ function validateSet() {
 	for (let i=1; i < nPlayers+1; i++) {
 		let name = (<HTMLInputElement>document.getElementById("p" + i + "-name")).value;
 		if (name == '' || names.includes(name)) {
+			document.getElementById("p" + i + "-name").style.outline = VALIDATE_OUTLINE;
+			valid = false;
+		} else if (name.length > 30) {
 			document.getElementById("p" + i + "-name").style.outline = VALIDATE_OUTLINE;
 			valid = false;
 		} else {
@@ -401,21 +405,6 @@ function storeResults() {
 
 
 // ----- Navbar -----
-function addNavListeners() {
-	// Adds all nav listeners to buttons
-	document.getElementById("nav-store").addEventListener('click', () => {
-		storeButton();
-	})
-
-	document.getElementById("nav-clear").addEventListener('click', () => {
-		clearButton();
-	})
-
-	document.getElementById("nav-clearall").addEventListener('click', () => {
-		clearAllButton();
-	})
-}
-
 function storeButton() {
 	//Function for the "store" button
 	if (storedSets.length < MAXSETS) {
@@ -430,7 +419,7 @@ function storeButton() {
 
 function clearButton() {
 	// Function for "clear" button
-	if (window.confirm("Clear all fields? Stored data will not be removed.")) {
+	if (window.confirm("Clear fields? Stored data will not be removed.")) {
 		clearFields(true);
 	}
 }
@@ -445,6 +434,21 @@ function clearAllButton() {
 	}
 }
 
+
+function addNavListeners() {
+	// Adds all nav listeners to buttons
+	document.getElementById("nav-store").addEventListener('click', () => {
+		storeButton();
+	})
+
+	document.getElementById("nav-clear").addEventListener('click', () => {
+		clearButton();
+	})
+
+	document.getElementById("nav-clearall").addEventListener('click', () => {
+		clearAllButton();
+	})
+}
 
 
 // ======= Setup =======
