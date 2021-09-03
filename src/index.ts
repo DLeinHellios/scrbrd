@@ -127,8 +127,7 @@ function addFormListeners() {
 }
 
 
-
-function clearFields(clearNames : boolean) {
+function clearFields(clearPlayers : boolean) {
 	// Clears all fields
 
 	resetFields(); // Reset validation
@@ -143,11 +142,11 @@ function clearFields(clearNames : boolean) {
 
 	// Clear all player fields (even hidden ones)
 	for (let i=1; i < MAXPLAYERS+1; i++) {
-		if (clearNames) {
+		if (clearPlayers) {
 			(<HTMLInputElement>document.getElementById("p" + i + "-name")).value = "";
+			(<HTMLInputElement>document.getElementById("p" + i + "-note")).value = "";
 		}
 
-		(<HTMLInputElement>document.getElementById("p" + i + "-note")).value = "";
 		(<HTMLInputElement>document.getElementById("p" + i + "-score")).value = "0";
 	}
 }
