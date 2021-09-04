@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- SetCount by DLeinHellios. Browser-based scoreboard and record keeper -->
+  <!-- Version: 0.2.0 - https://github.com/DLeinHellios/setcount-proto -->
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SetCount</title>
@@ -12,11 +14,11 @@
 
     <div class="header">
       <h1>SetCount</h1>
-      <button id="navStore" onclick="storeButton()">-Store-</button>
-      <button id="navClear" onclick="clearButton()">-Clear-</button>
-      <button id="navClearAll" onclick="clearAllButton()">-Clear All-</button>
-      <!--<button id="navExport" onclick="#">-Export-</button>-->
-      <!--<button id="navHelp" onclick="#">-Help-</button>-->
+      <button id="nav-store">-Store-</button>
+      <button id="nav-clear">-Clear-</button>
+      <button id="nav-clearall">-Clear All-</button>
+      <!--<button id="navExport">-Export-</button>-->
+      <!--<button id="navHelp">-Help-</button>-->
   </div>
 
   <div class="content-container">
@@ -28,14 +30,14 @@
         </div>
       </form>
       <div class="divider-sm"></div>
-      <button id="add-button" onclick="addPlayer()">Add Player</button>
-      <button id="remove-button" onclick="removePlayer()">Remove Player</button>
+      <button id="add-button">Add Player</button>
+      <button id="remove-button">Remove Player</button>
     </div>
 
     <div id="results" class="stats-container">
     </div>
   </div>
 
-  <script src="main.js"></script>
+  <script type="module" src="js/index.js"></script>
 </body>
 </html>
