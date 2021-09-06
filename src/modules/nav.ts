@@ -9,6 +9,7 @@ function storeButton() {
 	if (getSetData().length < MAXSETS) {
 		if (window.confirm("Add current set to storage?")) {
 			storeResults();
+			enableExportButtons();
 		}
 	} else {
 		window.alert("Maximum number of sets reached! Please export your data and clear to continue");
@@ -30,7 +31,20 @@ function clearAllButton() {
 		clearStorage();
 		clearFields(true, true);
 		updateResults();
+		disableExportButtons();
 	}
+}
+
+
+export function disableExportButtons() {
+	document.getElementById("nav-export-sets").setAttribute('disabled', 'true');
+	document.getElementById("nav-export-players").setAttribute('disabled', 'true');
+}
+
+
+export function enableExportButtons() {
+	document.getElementById('nav-export-sets').removeAttribute('disabled');
+	document.getElementById('nav-export-players').removeAttribute('disabled');
 }
 
 
