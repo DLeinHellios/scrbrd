@@ -15,6 +15,7 @@ export interface Player {
 export interface SetData {
 	gameName: string;
 	setNote: string;
+	date: string;
 	playerNames: string[];
 	playerNotes: string[];
 	playerScores: number[];

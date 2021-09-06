@@ -14,6 +14,15 @@ export function getSetData() {
 	return storedSets;
 }
 
+
+export function getCurrentDate() {
+	// Return the current date as string yyyy-mm-dd
+	let today = new Date();
+
+	return `${today.getFullYear()}-${(today.getMonth()+1).toString().padStart(2,'0')}-${today.getDate().toString().padStart(2,'0')}`;
+}
+
+
 // ----- Results Column -----
 function clearResultsColumn(results: HTMLElement) {
 	// Clears all child elements from results column
@@ -101,6 +110,7 @@ function storeSet() {
 	let setData: SetData = {
 		gameName: (<HTMLInputElement>document.getElementById("game-name")).value,
 		setNote: (<HTMLInputElement>document.getElementById("set-notes")).value,
+		date: getCurrentDate(),
 		playerNames: playerNames,
 		playerNotes: playerNotes,
 		playerScores: playerScores

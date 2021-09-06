@@ -1,11 +1,12 @@
 import { MAXSETS } from './constants.js';
 import { storeResults, clearStorage, updateResults, getPlayerData, getSetData } from './storage.js';
 import { clearFields, addPlayer, removePlayer } from './form.js';
+import { exportSetData, exportPlayerData } from './exporter.js';
 
 
 function storeButton() {
 	//Function for the "store" button
-	if (1 < MAXSETS) {
+	if (getSetData().length < MAXSETS) {
 		if (window.confirm("Add current set to storage?")) {
 			storeResults();
 		}
@@ -48,6 +49,15 @@ export function addListeners() {
 	document.getElementById("nav-clearall").addEventListener('click', () => {
 		clearAllButton();
 	})
+
+	document.getElementById("nav-export-players").addEventListener('click', () => {
+		exportPlayerData(getPlayerData());
+	})
+
+	document.getElementById("nav-export-sets").addEventListener('click', () => {
+		exportSetData(getSetData());
+	})
+
 	// Form Buttons
 	document.getElementById("add-button").addEventListener('click', () => {
 		addPlayer();
