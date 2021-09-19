@@ -1,4 +1,4 @@
-import { MAXPLAYERS, INITPLAYERS, VALIDATE_OUTLINE } from './constants.js';
+import { MAXPLAYERS, INITPLAYERS, INVALID_BG } from './constants.js';
 
 
 let nPlayers = 0; // Always-accurate player count
@@ -22,19 +22,16 @@ function createPlayer(num: number) {
 
 	let name = (<HTMLInputElement>document.createElement('INPUT'));
 	name.id = "p" + num + "-name";
-	name.placeholder = "Player Name";
-	name.size = 12;
+	name.placeholder = `P${num} Name`;
 
 	let note = (<HTMLInputElement>document.createElement('INPUT'));
 	note.id = "p" + num + "-note";
-	note.placeholder = "Notes";
-	note.size =24;
+	note.placeholder = `P${num} Note`;
 
     let score = (<HTMLInputElement>document.createElement('INPUT'));
 	score.id = "p" + num + "-score";
 	score.type = "number";
 	score.min = "0";
-	score.size = 3;
 	score.value = "0";
 
 	container.appendChild(label);
@@ -127,9 +124,9 @@ export function clearFields(clearPlayers: boolean, clearGame: boolean) {
 
 export function resetFields() {
 	// Resets all verified fields back to original state
-	document.getElementById("game-name").style.outline = 'none';
+	document.getElementById("game-name").style['background-color'] = 'white';
 	for (let i=1; i < nPlayers+1; i++) {
-		document.getElementById("p" + i + "-name").style.outline = 'none';
+		document.getElementById("p" + i + "-name").style['background-color'] = 'white';
 	}
 }
 
@@ -142,7 +139,7 @@ export function validateSet() {
 
 	// Game name cannot be blank
 	if ((<HTMLInputElement>document.getElementById("game-name")).value == "") {
-		document.getElementById("game-name").style.outline = VALIDATE_OUTLINE;
+		document.getElementById("game-name").style['background-color'] = INVALID_BG;
 		valid = false;
 	}
 
@@ -150,10 +147,10 @@ export function validateSet() {
 	for (let i=1; i < nPlayers+1; i++) {
 		let name = (<HTMLInputElement>document.getElementById("p" + i + "-name")).value;
 		if (name == '' || names.includes(name)) {
-			document.getElementById("p" + i + "-name").style.outline = VALIDATE_OUTLINE;
+			document.getElementById("p" + i + "-name").style['background-color'] = INVALID_BG;
 			valid = false;
 		} else if (name.length > 30) {
-			document.getElementById("p" + i + "-name").style.outline = VALIDATE_OUTLINE;
+			document.getElementById("p" + i + "-name").style['background-color'] = INVALID_BG;
 			valid = false;
 		} else {
 			names.push(name);
