@@ -1,17 +1,18 @@
 /* CSS Document */
 
 body {
-  background-color: #484848;
+  background-color: #232323;
   font-family: "Roboto", sans-serif;
   color: white;
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
+}
+
+button, input {
+  font-family: inherit;
 }
 
 input {
-  outline: none;
-  border: none;
-  border-width: 0px;
+  border: solid 2px #232323;
 }
 
 input:focus {
@@ -19,57 +20,102 @@ input:focus {
 }
 
 .header {
-  outline: solid;
-  outline-width: 4px;
-  outline-color: white;
-  margin: 10px;
+  margin: 4px;
+  outline: 4px solid #00C2CF;
 }
 
 .header h1{
+  padding: 6px;
   margin: 0;
-  padding: 0 20px 0 10px;
-  display: inline;
   font-size: 1.8rem;
 }
 
-.header button {
+.nav-container {
+  padding-top: 6px;
+  text-align: center;
+}
+
+.nav-container button {
   font-size: 1rem;
-  padding: 0 12px;
-  height: 100%;
   color: white;
-  background-color: #484848;
+  background-color: #232323;
+  border: none;
+}
+
+.nav-container button:disabled {
+  color: grey;
+}
+
+.nav-container button:hover:enabled {
+  text-decoration: underline;
+  color: #00C2CF;
+}
+
+.content-container {
+  width: 100%;
+  display: block;
 }
 
 .set-container {
-  padding: 0 20px;
-  width: 95%;
-  display: inline-block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .game-container input {
   margin: 4px 0;
   padding: 4px;
   font-size: 1rem;
-  width: 92%;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.player-container {
-  padding: 2px;
+.player-container label {
+  width: 100%;
+  display: block;
+  padding-top: 8px;
 }
 
 .player-container input {
-  margin: 4px;
+  margin: 4px 0;
   padding: 4px;
   font-size: 1rem;
-  width: 30%;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.player-container input[type='number'] {
-  width: 50px;
+.player-container input[type=number] {
+  width: 15%
+}
+
+.button-container {
+  text-align: center;
+  padding: 0 0 12px 0;
+}
+
+.button-container button {
+  font-size: 1rem;
+  width: 45%;
+  color: white;
+  box-sizing: border-box;
+  background-color: #232323;
+  border: solid 1px white;
+}
+
+.button-container button:disabled {
+  color: grey;
+  border: solid 1px grey;
+}
+
+.botton-container button:hover:enabled {
+  color: #00C2CF;
+  border-color: #00C2CF;
 }
 
 .divider-sm {
-  background-color: white;
+  background-color: #00C2CF;
   width: 100%;
   height: 4px;
   margin: 6px 0;
@@ -77,18 +123,13 @@ input:focus {
 }
 
 .stats-container {
-  width: 95%;
-  display: inline-block;
-  vertical-align: top;
+  width: 100%;
   text-align: center;
-  margin: 4px 0;
-  padding: 0 20px;
+  padding-top: 12px;
 }
 
-.stats-container h2 {
+.stats-container p {
   margin: 0;
-  padding: 12px 0 0 0;
-  text-decoration: underline;
 }
 
 .leaderboard h3 {
@@ -105,12 +146,64 @@ input:focus {
 }
 
 
+@media only screen and (min-width: 768px) {
+  .player-container input {
+    display: inline;
+    width: 45%;
+    margin: 4px 0;
+  }
+
+  .player-container input[type=number] {
+    display: inline;
+    width: 10%;
+  }
+}
+
+
 @media only screen and (min-width: 1024px) {
+  .nav-container {
+    text-align: left;
+  }
+
+  .nav-container button {
+    font-size: 1.2rem;
+  }
+
+  .content-container {
+    display: flex;
+  }
+
+  .set-form {
+    margin: 0 8px 0 0;
+  }
+
   .set-container {
-    width: 50%;
+    flex: 50%;
 	}
 
-  .stats-container {
-    width: 40%;
+  .player-container label {
+    padding-top: 4px;
   }
+
+  .player-container input {
+    display: inline;
+    width: 40%;
+    margin: 4px 0;
+  }
+
+  .player-container input[type=number] {
+    display: inline;
+    width: 20%;
+  }
+
+  .button-container button {
+    font-size: .9rem;
+    width: 30%;
+  }
+
+  .stats-container {
+    flex: 50%;
+    padding: 0 0 0 8px;
+  }
+
 }
