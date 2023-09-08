@@ -21,7 +21,7 @@ input:focus {
 
 .header {
   margin: 4px;
-  outline: 4px solid #00C2CF;
+  outline: 4px solid #67B8D0;
 }
 
 .header h1{
@@ -47,8 +47,7 @@ input:focus {
 }
 
 .nav-container button:hover:enabled {
-  text-decoration: underline;
-  color: #00C2CF;
+  color: #EF743D;
 }
 
 .content-container {
@@ -109,13 +108,13 @@ input:focus {
   border: solid 1px grey;
 }
 
-.botton-container button:hover:enabled {
-  color: #00C2CF;
-  border-color: #00C2CF;
+.button-container button:hover:enabled {
+  color: #EF743D;
+  border-color: #67B8D0;
 }
 
 .divider-sm {
-  background-color: #00C2CF;
+  background-color: #67B8D0;
   width: 100%;
   height: 4px;
   margin: 6px 0;
@@ -143,6 +142,10 @@ input:focus {
 
 .leaderboard table {
   width: 100%;
+}
+
+.pipe {
+  color:#EF743D;
 }
 
 

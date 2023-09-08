@@ -1,5 +1,5 @@
-# SetCount-Proto
-Browser-based scoreboard built in TypeScript. Quickly jot, compare, and save match/set records all within your browser. Records can be exported to CSV with the click of a button. This is a prototype version without any server-side functionality.
+# scr|brd (Score Board)
+Browser-based scoreboard built in TypeScript. Quickly jot, compare, and save match/set records all client-side within your browser. Records can be exported to CSV with the click of a button.
 
 <img src="img/demo.png?raw=true" alt="demo"/>
 
