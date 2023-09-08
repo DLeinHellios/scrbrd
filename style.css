@@ -30,6 +30,33 @@ input:focus {
   font-size: 1.8rem;
 }
 
+.banner {
+  display: inline-block;
+  width: 49%;
+}
+
+.header-nav {
+  display: inline-block;
+  width: 49%;
+  text-align: right;
+  font-size: 1.6rem;
+}
+
+.header-nav button {
+  color:white;
+  background-color: #232323;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.header-nav button:hover {
+  color:#EF743D;
+}
+
+.header-nav button:disabled {
+  color:grey;
+}
+
 .nav-container {
   padding-top: 6px;
   text-align: center;
