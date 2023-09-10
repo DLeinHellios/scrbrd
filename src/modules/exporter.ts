@@ -47,7 +47,7 @@ export function exportSetData(storedSets: SetData[]) {
 	let hiddenElement = document.createElement('a');
 	hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(header + data);
 	hiddenElement.target = '_blank';
-	hiddenElement.download = `setCount_setData_${getCurrentDate()}.csv`;
+	hiddenElement.download = `scrbrd_sets_${getCurrentDate()}.csv`;
 	hiddenElement.click();
 }
 
@@ -65,6 +65,6 @@ export function exportPlayerData(playerData: Map<string, Player>) {
 	let hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(header + data);
     hiddenElement.target = '_blank';
-    hiddenElement.download = `setCount_playerData_${getCurrentDate()}.csv`;
+    hiddenElement.download = `scrbrd_players_${getCurrentDate()}.csv`;
     hiddenElement.click();
 }

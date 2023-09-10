@@ -19,6 +19,7 @@ function createPlayer(num: number) {
 	let label = document.createElement('label');
 	label.id = "p" + num + "-label";
 	label.innerText = "Player " + num + ": ";
+	label.htmlFor = "p" + num + "-name";
 
 	let name = (<HTMLInputElement>document.createElement('INPUT'));
 	name.id = "p" + num + "-name";

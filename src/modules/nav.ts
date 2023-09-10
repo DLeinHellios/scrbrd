@@ -64,9 +64,9 @@ export function addListeners() {
 		clearAllButton();
 	})
 
-	document.getElementById("nav-export-players").addEventListener('click', () => {
-		exportPlayerData(getPlayerData());
-	})
+	// document.getElementById("nav-export-players").addEventListener('click', () => {
+	// 	exportPlayerData(getPlayerData());
+	// })
 
 	document.getElementById("nav-export-sets").addEventListener('click', () => {
 		exportSetData(getSetData());

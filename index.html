@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- SetCount by DLeinHellios. Browser-based scoreboard and record keeper -->
-  <!-- Version: 0.4.0 - https://github.com/DLeinHellios/setcount-proto -->
+  <!-- scr:brd (Score Board) v0.1.0 -->
+  <!-- Created by DLeinHellios [dleinhellios.com] -->
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SetCount</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <title>scr|brd - Browser Score Keeping</title>
+  <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="header">
-    <h1>SetCount</h1>
+    <div class="banner">
+      <h1>scr<span class="pipe">|</span>brd</h1>
+    </div>
+    <div class="header-nav">
+      <button id="nav-export-sets">⇩</button><span class="pipe">|</span><button id="#" disabled >⇧</button></h1>
+    </div>
 
   </div>
   <div class="nav-container">
     <button id="nav-store">Store</button>
     <button id="nav-clear">Clear</button>
     <button id="nav-clearall">Clear All</button>
-    <button id="nav-export-sets" disabled>Export Sets</button>
-    <button id="nav-export-players" disabled>Export Players</button>
+    <!-- <button id="nav-export-sets" disabled>Export Sets</button> -->
+    <!-- <button id="nav-export-players" disabled>Export Players</button>  -->
+    <button id="nav-open-settings" disabled>Settings</button>
+    <button id="nav-open-about" disabled>About</button>
   </div>
 
   <div class="content-container">
