@@ -13,6 +13,7 @@
 
 
 # Minor Features
+- **Automatic suggestions on fields based on stored data**
 - Add time to current date-only timestamps
 - Footer with DLeinHellios link and "about" link
 - Better labels on player input boxes

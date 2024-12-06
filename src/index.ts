@@ -1,8 +1,12 @@
-import { setupPlayers } from './modules/form.js';
-import { updateResults } from './modules/storage.js';
-import { addListeners } from './modules/nav.js';
+import { setupPlayers } from './form.js';
+import { updateResults } from './storage.js';
+import { addListeners } from './nav.js';
 
+function initialize() {
+    setupPlayers();
+    updateResults();
+    addListeners();
+    
+}
 
-setupPlayers();
-updateResults();
-addListeners();
+initialize();

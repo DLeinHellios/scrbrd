@@ -221,7 +221,11 @@ export function storeResults() {
 		storePlayers();
 		clearFields(false, false);
 		updateResults();
+
+		return true;
 	}
+
+	return false;
 }
 
 
