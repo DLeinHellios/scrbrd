@@ -8,12 +8,18 @@
 
 .menu-bar {
   background-color: #252525;
-  color: white;
   padding: 12px 24px;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.menu-bar button {
+  background-color: #252525;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 .grid-container {

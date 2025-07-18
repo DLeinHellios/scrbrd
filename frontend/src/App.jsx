@@ -1,5 +1,6 @@
 import plusIcon from './assets/plus.svg';
 import minusIcon from './assets/minus.svg';
+import settingsIcon from './assets/cog.svg';
 import { useState } from 'react';
 import './App.css';
 
@@ -18,7 +19,7 @@ function App() {
     4: 40,
   });
 
-  const getIcon = (label) => {
+  const getLifeIcon = (label) => {
     return (
       <img
         src={label === '+' ? plusIcon : minusIcon}
@@ -28,7 +29,17 @@ function App() {
     )
   };
 
-  const handleClick = (label, quadrant) => {
+  const getMenuIcon = () => {
+    return (
+      <img
+        src={settingsIcon}
+        alt={'settings'}
+        style={{ width: '60%', height: '60%' }}
+      />
+    )
+  };
+
+  const handleLifeClick = (label, quadrant) => {
     setCounters(prev => ({
       ...prev,
       [quadrant]: label === '+'
@@ -37,6 +48,11 @@ function App() {
     }));
   };
 
+  const handleMenuClick = () => {
+    console.log('open settings')
+    return
+  }
+
   const renderTitle = () => {
     return (
       <div>
@@ -44,6 +60,16 @@ function App() {
         <span style={{color:'#ffffff'}}>|</span>
         <span style={{color:PLAYER_COLORS['4']['+']}}>brd</span>
       </div>
+    )
+  }
+
+  const renderMenu = () => {
+    return (
+      <button 
+        key={'settings'}
+        onClick={() => handleMenuClick()}>
+      {getMenuIcon()}
+      </button>
     )
   }
 
@@ -74,12 +100,12 @@ function App() {
           {buttons.map((label, i) => (
             <button
               key={i}
-              onClick={() => handleClick(label, quadrant)}
+              onClick={() => handleLifeClick(label, quadrant)}
               style={{
                 backgroundColor: PLAYER_COLORS[quadrant][label]
               }}
             >
-              {getIcon(label)}
+              {getLifeIcon(label)}
             </button>
           ))}
         </div>
@@ -91,6 +117,7 @@ function App() {
   <div className="app-container">
       <div className="menu-bar">
         {renderTitle()}
+        {renderMenu()}
       </div>
     <div className="grid-container">
       <div className="center-container">
