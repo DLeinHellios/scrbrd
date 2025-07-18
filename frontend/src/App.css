@@ -1,0 +1,67 @@
+/* App.css */
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-bar {
+  background-color: #252525;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #252525;
+}
+
+.center-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: 40px;
+}
+
+.quadrant button {
+  width: clamp(64px, 20vw, 300px);
+  height: clamp(64px, 20vw, 300px);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.05s ease-in-out;
+}
+
+.quadrant button:active {
+  transform: scale(0.96);
+}
+
+.quadrant button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.display {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  user-select: none;
+  text-align: center;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+}
+

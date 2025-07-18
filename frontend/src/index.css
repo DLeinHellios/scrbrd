@@ -1,0 +1,12 @@
+:root {
+  font-family: Mukta, sans-serif;;
+  line-height: 1.2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
